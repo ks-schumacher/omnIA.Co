@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OMNIA · NIfTI ⇄ DICOM</title>
+  <meta name="description" content="OMNIA converts NIfTI to DICOM and DICOM to NIfTI entirely in the browser, with lossless conversion, independent verification, de-identification and CT defacing.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="#" aria-label="OMNIA">
+      <svg class="reticle" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="15.5" fill="none" stroke="currentColor" stroke-width="3"/>
+        <line x1="20" y1="2" x2="20" y2="13" class="r-ax"/><line x1="20" y1="27" x2="20" y2="38" class="r-ax"/>
+        <line x1="2" y1="20" x2="13" y2="20" class="r-cor"/><line x1="27" y1="20" x2="38" y2="20" class="r-cor"/>
+        <circle cx="20" cy="20" r="2.6" class="r-sag"/>
+      </svg>
+      <span class="wordmark">OMNIA</span>
+    </a>
+    <p class="local"><span class="led" aria-hidden="true"></span><span data-i18n="localBadge"></span></p>
+    <div class="bar-actions">
+      <button type="button" class="ghost" id="langBtn"></button>
+      <button type="button" class="ghost icon" id="themeBtn" aria-label="theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9A7 7 0 0 1 12 3z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1 class="tagline" data-i18n="tagline"></h1>
+      <div class="switch" role="radiogroup" aria-labelledby="dirTitle">
+        <span id="dirTitle" class="sr-only" data-i18n="dirTitle"></span>
+        <button type="button" role="radio" class="dir" data-dir="dcm2nii" aria-checked="true">
+          <span class="dir-from">DICOM</span><span class="dir-arrow" aria-hidden="true"></span><span class="dir-to">NIfTI</span>
+        </button>
+        <svg class="slab" viewBox="0 0 260 120" aria-hidden="true" id="slab">
+          <g id="slices"></g>
+        </svg>
+        <button type="button" role="radio" class="dir" data-dir="nii2dcm" aria-checked="false">
+          <span class="dir-from">NIfTI</span><span class="dir-arrow" aria-hidden="true"></span><span class="dir-to">DICOM</span>
+        </button>
+      </div>
+      <p class="dir-help" id="dirHelp"></p>
+    </section>
+
+    <div class="work">
+      <section class="panel settings" aria-labelledby="s1">
+        <h2 id="s1"><span class="num" aria-hidden="true">1</span><span data-i18n="step1"></span></h2>
+        <p class="help" data-i18n="step1Help"></p>
+        <form id="settingsForm" autocomplete="off"></form>
+      </section>
+
+      <section class="panel exams" aria-labelledby="s2">
+        <h2 id="s2"><span class="num" aria-hidden="true">2</span><span data-i18n="step2"></span></h2>
+        <p class="help" data-i18n="step2Help"></p>
+        <div class="drop" id="drop" tabindex="0">
+          <svg class="drop-glyph" viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="10" y="8" width="34" height="44" rx="2" class="g1"/>
+            <rect x="16" y="12" width="34" height="44" rx="2" class="g2"/>
+            <rect x="22" y="16" width="34" height="44" rx="2" class="g3"/>
+          </svg>
+          <p class="drop-title" data-i18n="drop"></p>
+          <p class="drop-sub"><span data-i18n="dropOr"></span>
+            <label class="link"><input type="file" id="pickFiles" multiple accept=".zip,.rar,.7z,.tar,.tgz,.gz,.bz2,.xz,.nii,.dcm"><span data-i18n="pickFiles"></span></label>,
+            <label class="link"><input type="file" id="pickFolder" webkitdirectory><span data-i18n="pickFolder"></span></label>
+          </p>
+          <p class="drop-limit" data-i18n="limit"></p>
+        </div>
+        <div class="dest" id="dest"></div>
+        <div class="controls">
+          <button type="button" class="primary" id="startBtn" data-i18n="start"></button>
+          <button type="button" id="pauseBtn" hidden></button>
+          <button type="button" id="cancelBtn" hidden data-i18n="cancel"></button>
+          <button type="button" id="retryBtn" hidden data-i18n="retry"></button>
+          <button type="button" class="ghost" id="clearBtn" data-i18n="clear"></button>
+          <p class="engine" id="engine" role="status"></p>
+        </div>
+        <div class="summary" id="summary" role="status" aria-live="polite"></div>
+        <ol class="queue" id="queue"></ol>
+        <div class="results" id="results" hidden>
+          <h2><span class="num" aria-hidden="true">3</span><span data-i18n="step3"></span></h2>
+          <div class="result-actions" id="resultActions"></div>
+        </div>
+      </section>
+    </div>
+
+    <section class="method" id="method" aria-labelledby="mt">
+      <h2 id="mt" data-i18n="methodTitle"></h2>
+      <div class="method-body" id="methodBody"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p data-i18n="footer"></p>
+    <p><span data-i18n="author"></span> <span id="version"></span> <a href="https://github.com/ks-schumacher/omnIA.Co" rel="noopener">GitHub</a></p>
+  </footer>
+
+  <dialog id="gate" aria-labelledby="gateTitle">
+    <form method="dialog" id="gateForm" class="gate">
+      <svg class="reticle big" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="15.5" fill="none" stroke="currentColor" stroke-width="3"/>
+        <line x1="20" y1="2" x2="20" y2="13" class="r-ax"/><line x1="20" y1="27" x2="20" y2="38" class="r-ax"/>
+        <line x1="2" y1="20" x2="13" y2="20" class="r-cor"/><line x1="27" y1="20" x2="38" y2="20" class="r-cor"/>
+        <circle cx="20" cy="20" r="2.6" class="r-sag"/>
+      </svg>
+      <h2 id="gateTitle" data-i18n="gateTitle"></h2>
+      <p data-i18n="gateText"></p>
+      <label class="field"><span data-i18n="gateEmail"></span><input type="email" id="gateEmail" required autocomplete="email"></label>
+      <label class="field" id="gateCodeWrap" hidden><span data-i18n="gateCode"></span><input id="gateCode" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code"></label>
+      <p class="gate-msg" id="gateMsg" role="status"></p>
+      <div class="gate-actions">
+        <button type="button" class="primary" id="gateSend" data-i18n="gateSend"></button>
+        <button type="button" class="primary" id="gateVerify" hidden data-i18n="gateVerify"></button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
