@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Administrator page `/contatos.html`: view the access contacts and download them as a spreadsheet that opens directly in Excel (UTF-8, semicolon separator), with no command line. The key is kept only in memory.
+
 ## 1.0.0 (2026-10-16)
 
 First public release.

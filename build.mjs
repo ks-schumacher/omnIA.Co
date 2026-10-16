@@ -11,10 +11,12 @@ const common = { bundle: true, format: 'esm', target: ['chrome110', 'edge110', '
 const external = ['module', 'fs', 'path', 'crypto', 'url', 'worker_threads', 'node:*'];
 await build({ ...common, entryPoints: ['src/app/app.js'], outfile: `${out}/app.js` });
 await build({ ...common, entryPoints: ['src/worker/worker.js'], outfile: `${out}/worker.js`, external });
+await build({ ...common, entryPoints: ['src/app/contatos.js'], outfile: `${out}/contatos.js` });
 
 const copy = (from, to) => { fs.mkdirSync(path.dirname(to), { recursive: true }); fs.copyFileSync(from, to); };
 let html = fs.readFileSync('src/app/index.html', 'utf8');
 fs.writeFileSync(`${out}/index.html`, html);
+copy('src/app/contatos.html', `${out}/contatos.html`); // administrator page: contacts export
 copy('src/app/styles.css', `${out}/styles.css`);
 copy('src/app/favicon.svg', `${out}/favicon.svg`);
 const fonts = [

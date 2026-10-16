@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Contatos · OMNIA</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="contatos.js"></script>
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="./" aria-label="OMNIA">
+      <svg class="reticle" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="15.5" fill="none" stroke="currentColor" stroke-width="3"/>
+        <line x1="20" y1="2" x2="20" y2="13" class="r-ax"/><line x1="20" y1="27" x2="20" y2="38" class="r-ax"/>
+        <line x1="2" y1="20" x2="13" y2="20" class="r-cor"/><line x1="27" y1="20" x2="38" y2="20" class="r-cor"/>
+        <circle cx="20" cy="20" r="2.6" class="r-sag"/>
+      </svg>
+      <span class="wordmark">OMNIA</span>
+    </a>
+    <p class="local">Área do administrador</p>
+  </header>
+
+  <main class="admin">
+    <section class="panel">
+      <h2>Contatos de acesso</h2>
+      <p class="help">Digite a chave de administrador (a senha que você colocou em <b>ADMIN_KEY</b> no Netlify). A chave não fica salva neste navegador.</p>
+      <form id="keyForm" class="admin-form" autocomplete="off">
+        <label class="field">
+          <span>Chave de administrador</span>
+          <input type="password" id="adminKey" required autocomplete="current-password" spellcheck="false">
+        </label>
+        <div class="controls">
+          <button type="submit" class="primary" id="loadBtn">Ver contatos</button>
+          <button type="button" id="downloadBtn" disabled>Baixar planilha</button>
+        </div>
+      </form>
+      <p class="admin-msg" id="msg" role="status" aria-live="polite"></p>
+      <div class="admin-table-wrap" id="tableWrap" hidden>
+        <table class="admin-table" id="table">
+          <thead>
+            <tr><th>E-mail</th><th>Verificado</th><th>Primeiro acesso</th><th>Último acesso</th><th>Pedidos de código</th><th>Idioma</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>A planilha baixada abre direto no Excel (separador ponto e vírgula, acentos preservados).</p>
+  </footer>
+</body>
+</html>

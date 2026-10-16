@@ -150,7 +150,9 @@ Running locally there is no access gate (the email functions only exist on Netli
    - `RESEND_API_KEY` **or** `SMTP_USER` + `SMTP_PASS` (+ `SMTP_HOST`, `SMTP_PORT`, default Gmail SSL 465): sending of the 6-digit codes. Without them, the gate runs in *preview mode*: the email is recorded (unverified) and access is granted.
    - `MAIL_FROM`: sender address.
    - `CODE_SECRET`: HMAC key for codes and tokens (generated and stored automatically if absent).
-   - `ADMIN_KEY`: enables `GET /api/leads` (header `x-admin-key`), which returns the contacts as CSV.
+   - `ADMIN_KEY`: password for the administrator page **`/contatos.html`**, which lists the access contacts and downloads them as an Excel-ready spreadsheet (the same data is available as CSV from `GET /api/leads` with the header `x-admin-key`).
+
+   Secret variables in Netlify take one value per deploy context: fill in at least **Production**. Changes take effect after a new deploy (Deploys → Trigger deploy).
 
 ## Project structure
 
