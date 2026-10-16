@@ -15,6 +15,8 @@ A converter for CT and MR that runs entirely in the browser, checks every voxel 
 
 <p align="center"><img src="docs/img/omnia-screenshot.png" width="820" alt="OMNIA interface: direction switch, settings and exam queue"></p>
 
+<p align="center"><b>Use it online: <a href="https://omniaco.netlify.app">omniaco.netlify.app</a></b> · Chrome or Edge recommended</p>
+
 <p align="center"><i>Author: <b>Klaus Schumacher, MD</b> · Contributor: <b>Dr. Heraldo Mello Neto</b></i><br>
 <a href="#em-português">Leia em português ↓</a></p>
 
@@ -37,6 +39,8 @@ A converter for CT and MR that runs entirely in the browser, checks every voxel 
 OMNIA is a research and teaching tool. It is not a medical device and is not intended for diagnosis.
 
 ## Using OMNIA
+
+Open **https://omniaco.netlify.app** (Chrome or Edge for writing results straight into a folder), or run it on your own computer (see *Run it locally*).
 
 1. **Choose the direction**: DICOM → NIfTI or NIfTI → DICOM.
 2. **Configure** (left panel). These are all the decisions of the batch:
@@ -107,8 +111,8 @@ All numbers below come from scripts in this repository, run on public data that 
 
 ```bash
 npm ci                                   # dependencies (Node 20+)
-tools/fetch_test_data.sh ../omnia-data   # public test data, pinned commits
-tools/validate_all.sh ../omnia-data ../omnia-reports
+bash tools/fetch_test_data.sh ../omnia-data   # public test data, pinned commits
+bash tools/validate_all.sh ../omnia-data ../omnia-reports
 ```
 
 Requirements: Python 3 with `numpy nibabel pydicom scipy highdicom` (and `rars` to build the RAR test exam), native `dcm2niix` and `dciodvfy` (dicom3tools) on the PATH. `npm test` runs the unit tests alone.
@@ -192,6 +196,8 @@ If OMNIA is useful in your work, please cite it ([CITATION.cff](CITATION.cff)).
 - **Privacidade por construção**: a política de segurança da página impede qualquer envio de dados de imagem. Só o e-mail de acesso é transmitido.
 
 ### Como usar
+
+Abra **https://omniaco.netlify.app** (Chrome ou Edge, para gravar os resultados direto numa pasta) ou rode no seu computador (veja abaixo).
 
 1. Escolha o sentido da conversão.
 2. Configure privacidade, formato e políticas no painel 1.
