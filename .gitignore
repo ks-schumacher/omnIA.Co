@@ -1,0 +1,27 @@
+# dependencies and build output
+node_modules/
+dist/
+
+# local data, outputs and reports: never commit imaging data
+*.dcm
+*.dcm.gz
+*.nii
+*.nii.gz
+*.img
+*.hdr
+*.zip
+*.rar
+*.7z
+data/
+reports/
+outputs/
+*_pseudonym_map_*.csv
+*_mapa_pseudonimos_*.csv
+
+# environment and editor files
+.env
+.env.*
+.netlify/
+.DS_Store
+Thumbs.db
+*.log

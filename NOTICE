@@ -1,0 +1,5 @@
+OMNIA
+Copyright 2026 Klaus Schumacher, MD
+
+This product includes software developed by third parties; see THIRD_PARTY_NOTICES.md.
+DICOM to NIfTI conversion uses dcm2niix (Copyright (c) 2014-2025 Chris Rorden), BSD-2-Clause licence.

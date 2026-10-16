@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use OMNIA in your work, please cite it as below."
+title: "OMNIA: browser-based, voxel-verified NIfTI and DICOM converter"
+type: software
+version: 1.0.0
+date-released: 2026-10-16
+license: Apache-2.0
+repository-code: "https://github.com/ks-schumacher/omnIA.Co"
+authors:
+  - family-names: Schumacher
+    given-names: Klaus
+keywords:
+  - DICOM
+  - NIfTI
+  - neuroimaging
+  - radiology
+  - de-identification
+  - DICOM SEG
+  - BIDS
+  - WebAssembly

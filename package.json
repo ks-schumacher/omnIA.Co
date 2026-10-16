@@ -1,0 +1,56 @@
+{
+  "name": "omnia",
+  "version": "1.0.0",
+  "description": "OMNIA — NIfTI ⇄ DICOM converter that runs 100% in the browser",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "node build.mjs && node serve.mjs 8080",
+    "test": "node --test \"test/node/*.test.mjs\"",
+    "test:e2e": "node test/e2e/e2e.mjs",
+    "validate:refs": "python3 test/py/validate_refs.py",
+    "validate:synthetic": "python3 test/py/validate_synthetic.py"
+  },
+  "keywords": [
+    "dicom",
+    "nifti",
+    "neuroimaging",
+    "radiology",
+    "converter",
+    "dcm2niix",
+    "bids",
+    "dicom-seg",
+    "deidentification",
+    "defacing",
+    "webassembly"
+  ],
+  "author": "Klaus Schumacher, MD",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@fontsource/atkinson-hyperlegible": "^5.3.0",
+    "@fontsource/atkinson-hyperlegible-mono": "^5.3.0",
+    "@fontsource/unbounded": "^5.3.0",
+    "@netlify/blobs": "^11.1.4",
+    "@niivue/dcm2niix": "^1.3.20260724",
+    "@noble/hashes": "^2.4.0",
+    "fflate": "^0.8.3",
+    "libarchive.js": "^2.0.2",
+    "nodemailer": "^10.1.1",
+    "esbuild": "^0.28.2"
+  },
+  "devDependencies": {
+    "@sparticuz/chromium": "^153.0.0",
+    "puppeteer-core": "^25.14.0"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ks-schumacher/omnIA.Co.git"
+  },
+  "homepage": "https://github.com/ks-schumacher/omnIA.Co",
+  "contributors": [
+    "Heraldo Mello Neto (https://github.com/HeraldoMelloNeto)"
+  ]
+}
