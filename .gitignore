@@ -1,5 +1,5 @@
 # dependencies and build output
-node_modules/
+node_modules
 dist/
 
 # local data, outputs and reports: never commit imaging data
